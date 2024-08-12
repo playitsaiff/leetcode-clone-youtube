@@ -1,23 +1,22 @@
 import ProblemsTable from "@/components/ProblemsTable/ProblemsTable";
 import Topbar from "@/components/Topbar/Topbar";
+import { firestore } from "@/firebase/firebase";
 import useHasMounted from "@/hooks/useHasMounted";
+import { setDoc, doc } from "firebase/firestore";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 	const [loadingProblems, setLoadingProblems] = useState(true);
 	const hasMounted = useHasMounted();
-
+	
 	if (!hasMounted) return null;
 
 	return (
 		<>
 			<main className='bg-dark-layer-2 min-h-screen'>
 				<Topbar />
-				<h1
-					className='text-2xl text-center text-gray-700 dark:text-gray-400 font-medium
-					uppercase mt-10 mb-5'
-				>
+				<h1 className='text-2xl text-center text-gray-700 dark:text-gray-400 font-medium uppercase mt-10 mb-5'>
 					&ldquo; QUALITY OVER QUANTITY &rdquo; 👇
 				</h1>
 				<div className='relative overflow-x-auto mx-auto px-6 pb-10'>
@@ -41,7 +40,6 @@ export default function Home() {
 									<th scope='col' className='px-6 py-3 w-0 font-medium'>
 										Difficulty
 									</th>
-
 									<th scope='col' className='px-6 py-3 w-0 font-medium'>
 										Category
 									</th>
